@@ -1,0 +1,13 @@
+.img{
+	border-radius: 5px;
+	border:5px solid #a45;
+}
+#root{
+	width: 500px;
+	height: 400px;
+}
+
+#root > img{
+	width: 100%;
+	height: 100%;
+}
