@@ -31,9 +31,9 @@ import Times from './times.js';
 // dom.onmouseleave = function(){
 // 	start()
 // }
-function MyFuncComp(){
-	return <h1>我是组件</h1>
-}
+// function MyFuncComp(){
+// 	return <h1>我是组件</h1>
+// }
 const div = (<div><button onClick={onclicks}>按钮</button></div>);
 function onclicks(){
 	console.log(1)
