@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Times from './times.js';
+import Poll from './Poll.js';
 // import MyFuncCompb from './MyFuncComp.js';
 // import MyClassComp from './MyClassComp.js'
 // import img1 from './assets/photo-1.jpg';
@@ -34,8 +34,8 @@ import Times from './times.js';
 // function MyFuncComp(){
 // 	return <h1>我是组件</h1>
 // }
-const div = (<div><button onClick={onclicks}>按钮</button></div>);
-function onclicks(){
-	console.log(1)
-}
-ReactDOM.render(div,document.getElementById('root'));
+// const div = (<div><button onClick={onclicks}>按钮</button></div>);
+// function onclicks(){
+// 	console.log(1)
+// }
+ReactDOM.render(<div><Poll num={10}/></div>,document.getElementById('root'));

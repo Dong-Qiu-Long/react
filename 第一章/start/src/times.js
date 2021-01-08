@@ -16,6 +16,7 @@ export default class tiems extends React.Component{
 			})//重新设置状态，触发自动的重新渲染
 			if(this.state.num <= 0){
 				clearInterval(this.timers)
+				this.props.onOver()
 			}
 		},1000)
 	}
