@@ -1,8 +1,8 @@
 import React , {useRef,useState,useEffect,useLayoutEffect}from 'react';
 import ReactDOM from 'react-dom';
 import { Transition } from 'react-transition-group';
-
-const duration = 300;
+import "./App.css"
+// const duration = 300;
 
 const defaultStyle = {
 	transition: `opacity ${duration}ms ease-in-out`,
@@ -10,12 +10,12 @@ const defaultStyle = {
 	transition:"0.5s"
 }
 
-const transitionStyles = {
-	entering: {marginLeft:"300px",color:"#a45"},
-  entered:  {marginLeft:"0px",color:"#000"},
-  exiting:  {marginLeft:"0px",color:"#000"},
-  exited:  {marginLeft:"300px",color:"#a45"},
-};
+// const transitionStyles = {
+// 	entering: {marginLeft:"300px",color:"#a45"},
+//   entered:  {marginLeft:"0px",color:"#000"},
+//   exiting:  {marginLeft:"0px",color:"#000"},
+//   exited:  {marginLeft:"300px",color:"#a45"},
+// };
 
 function App() {
   const [inProp, setInProp] = useState(false);
@@ -23,10 +23,13 @@ function App() {
     <div>
       <Transition in={inProp} timeout={200}>
         {state => (
-          <div style={{
-						...defaultStyle,
-						...transitionStyles[state]
-					}}>
+					<div
+					 //style={{
+					// 	...defaultStyle,
+					// 	...transitionStyles[state]
+					// }}
+					className={state}
+					>
 						<h1>I'm a fade Transition!</h1>
 					</div>
         )}
