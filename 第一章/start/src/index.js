@@ -1,43 +1,40 @@
 import React , {useRef,useState,useEffect,useLayoutEffect}from 'react';
 import ReactDOM from 'react-dom';
-// class Test extends React.Component{
-// 	method(){
-// 		console.log("Test method called");
-// 	}
-// 	render(){
-// 		return <h1>Test Component</h1>
-// 	}
-// }
+import { Transition } from 'react-transition-group';
 
-// function Test(props , ref){
-// 	useImperativeHandle(ref,()=>{
-// 		//该函数第一次加载组件后调用
-// 		//如果使用了依赖项，则第一次调用后，会进行缓存，只有依赖项发生变化时，才会从新调用函数
-// 		//相当于给	ref.current = 1
-// 		return 1
-// 	})
-// 	return <h1 ref={ref}>Test Component</h1>
-// }
-// const TestWrapper = React.forwardRef(Test);
-function App(){
-	const [n,setN] = useState(0);
-	const ref = useRef()
-	// useEffect(()=>{
-	// 	ref.current.innerText = Math.random().toFixed(2)
-	// })
-	useEffect(()=>{
-		setTimeout(()=>{
-			ref.current.innerText = Math.random().toFixed(2)
-		},1000)
-	})
-	return (
-		<div>
-			<h1 ref={ref}>{n}</h1>
-			<button onClick={()=>{
-				setN(n+1)
-			}}>调用Test组件的method方法</button>
-		</div>
-	)
+const duration = 300;
+
+const defaultStyle = {
+	transition: `opacity ${duration}ms ease-in-out`,
+	fontSize:"40px",
+	transition:"0.5s"
 }
 
+const transitionStyles = {
+	entering: {marginLeft:"300px",color:"#a45"},
+  entered:  {marginLeft:"0px",color:"#000"},
+  exiting:  {marginLeft:"0px",color:"#000"},
+  exited:  {marginLeft:"300px",color:"#a45"},
+};
+
+function App() {
+  const [inProp, setInProp] = useState(false);
+  return (
+    <div>
+      <Transition in={inProp} timeout={200}>
+        {state => (
+          <div style={{
+						...defaultStyle,
+						...transitionStyles[state]
+					}}>
+						<h1>I'm a fade Transition!</h1>
+					</div>
+        )}
+      </Transition>
+      <button onClick={() => setInProp(!inProp)}>
+        显示隐藏
+      </button>
+    </div>
+  );
+}
 ReactDOM.render(<div><App/></div>,document.getElementById('root'));
