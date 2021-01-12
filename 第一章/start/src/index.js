@@ -1,13 +1,13 @@
 import React , {useRef,useState,useEffect,useLayoutEffect}from 'react';
 import ReactDOM from 'react-dom';
-class Test extends React.Component{
-	method(){
-		console.log("Test method called");
-	}
-	render(){
-		return <h1>Test Component</h1>
-	}
-}
+// class Test extends React.Component{
+// 	method(){
+// 		console.log("Test method called");
+// 	}
+// 	render(){
+// 		return <h1>Test Component</h1>
+// 	}
+// }
 
 // function Test(props , ref){
 // 	useImperativeHandle(ref,()=>{
