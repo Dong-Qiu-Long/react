@@ -1,21 +1,21 @@
 import React , {useRef,useState,useEffect,useLayoutEffect}from 'react';
 import ReactDOM from 'react-dom';
 import { Transition } from 'react-transition-group';
-import "./App.css"
-// const duration = 300;
+// import "./App.css"
+const duration = 300;
 
-// const defaultStyle = {
-// 	transition: `opacity ${duration}ms ease-in-out`,
-// 	fontSize:"40px",
-// 	transition:"0.5s"
-// }
+const defaultStyle = {
+	transition: `opacity ${duration}ms ease-in-out`,
+	fontSize:"40px",
+	transition:"0.5s"
+}
 
-// const transitionStyles = {
-// 	entering: {marginLeft:"300px",color:"#a45"},
-//   entered:  {marginLeft:"0px",color:"#000"},
-//   exiting:  {marginLeft:"0px",color:"#000"},
-//   exited:  {marginLeft:"300px",color:"#a45"},
-// };
+const transitionStyles = {
+	entering: {marginLeft:"300px",color:"#a45"},
+  entered:  {marginLeft:"0px",color:"#000"},
+  exiting:  {marginLeft:"0px",color:"#000"},
+  exited:  {marginLeft:"300px",color:"#a45"},
+};
 
 function App() {
   const [inProp, setInProp] = useState(false);
