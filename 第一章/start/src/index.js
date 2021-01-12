@@ -4,11 +4,11 @@ import { Transition } from 'react-transition-group';
 import "./App.css"
 // const duration = 300;
 
-const defaultStyle = {
-	transition: `opacity ${duration}ms ease-in-out`,
-	fontSize:"40px",
-	transition:"0.5s"
-}
+// const defaultStyle = {
+// 	transition: `opacity ${duration}ms ease-in-out`,
+// 	fontSize:"40px",
+// 	transition:"0.5s"
+// }
 
 // const transitionStyles = {
 // 	entering: {marginLeft:"300px",color:"#a45"},
