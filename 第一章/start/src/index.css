@@ -1,14 +1,12 @@
-.box{
-	width: 500px;
-	height: 500px;
-	background-color: #008c8c;
-	margin: 100px auto;
-	border:2px solid #ccc;
-	position: relative;
+.exit-active{
+	transition: 2s;
+	opacity: 0;
 }
-.son{
-	width: 100px;
-	height: 100px;
-	background: #a45;
-	position: absolute;
+.enter{
+	opacity: 0;
 }
+
+.enter-active{
+	transition: 2s;
+	opacity: 1;
+} 

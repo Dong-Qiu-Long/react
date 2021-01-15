@@ -1,43 +1,33 @@
-import React , {useRef,useState,useEffect,useLayoutEffect}from 'react';
+import React, { useRef, useState, useEffect, useLayoutEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Transition } from 'react-transition-group';
-// import "./App.css"
-const duration = 300;
+// import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { BrowserRouter as Router ,Route , Switch ,Link} from 'react-router-dom'
 
-const defaultStyle = {
-	transition: `opacity ${duration}ms ease-in-out`,
-	fontSize:"40px",
-	transition:"0.5s"
+function A({match}){
+  // console.log(props.match.path)
+  return <div>
+    <Link to={`${match.url}/b`}>转到D</Link>
+    <Link to={`${match.url}/c`}>转到C</Link>
+     <Route path={`${match.url}/b`}   component={D}/>
+     <Route path={`${match.url}/c`}   component={C}/>
+  </div>
+}
+function D(){
+  return <div>D</div>
 }
 
-const transitionStyles = {
-	entering: {marginLeft:"300px",color:"#a45"},
-  entered:  {marginLeft:"0px",color:"#000"},
-  exiting:  {marginLeft:"0px",color:"#000"},
-  exited:  {marginLeft:"300px",color:"#a45"},
-};
-
-function App() {
-  const [inProp, setInProp] = useState(false);
-  return (
-    <div>
-      <Transition in={inProp} timeout={200}>
-        {state => (
-					<div
-					 //style={{
-					// 	...defaultStyle,
-					// 	...transitionStyles[state]
-					// }}
-					className={state}
-					>
-						<h1>I'm a fade Transition!</h1>
-					</div>
-        )}
-      </Transition>
-      <button onClick={() => setInProp(!inProp)}>
-        显示隐藏
-      </button>
-    </div>
-  );
+function B(){
+  return <div>B</div>
 }
-ReactDOM.render(<div><App/></div>,document.getElementById('root'));
+function C(){
+  return <div>C</div>
+}
+function App(){
+  return (<div>
+    <Router>
+        <Route path="/aa"component={A}></Route>
+        {/* <Route path="/b" component={B}/>
+        <Route path="/c"   component={C}/> */}
+    </Router>
+  </div>)}
+ReactDOM.render(<div><App /></div>, document.getElementById('root'));
