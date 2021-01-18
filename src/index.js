@@ -1,41 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import img1 from './time.jpg';
-import img2 from './family.jpg';
+import Ball from './poll.js'
 
-//图片数组
-const arrImg = [img1,img2];
-//计数器
-let index = 0;
-//定时器
-let times = null;
-// 开始轮播
-function timeFun(){
-  times = setInterval(function(){
-    index++
-    const div = (<div style={{
-      width:500,
-      height:400,
-      border:'1px solid #ccc'
-    }}
-    onMouseLeave={()=>{
-      console.log('开始了');
-      timeFun()
-    }}
-    onMouseOver = {()=>{
-      console.log('停止了');
-      clearInterval(times)
-    }}
-    >
-      <img style={{
-        width:'100%'
-      }} src={arrImg[index%2]} alt=""/>
-    </div>)
-    ReactDOM.render(div,
-      document.getElementById('root')
-    );
-  },2000)
+function getRundom(min,max){
+  return parseInt(Math.random()*(max-min)) + min;
 }
-timeFun()
+function getRundomGg(){
+  return '#'+Math.random().toString(16).substr(2,3)
+}
+function Polls(props){
+  console.log(getRundom(0,50))
+  const arr = []
+   for(var i = 0; i < props.num; i++){
+    arr.push(<Ball key={i} x = {getRundom(90,190)} y = {getRundom(90,190)} left = {getRundom(0,900)} top = {getRundom(0,900)} bg={getRundomGg()}/>)
+   }
+   return <div>{arr}</div>
+}
+
+ReactDOM.render(<div><Polls num={10}/></div>,
+  document.getElementById('root')
+);
 
 
