@@ -22,9 +22,16 @@ export default class Tick extends React.Component{
 	render(){
 		return (<div>
 			<h1>
-				倒计时:{this.state.num}
+				倒计时:<B num={this.state.num}/>
 			</h1>
-			<p>{this.state.n}</p>
 		</div>)
 	}
+}
+
+function B(props){
+	return <C num={props.num}/>
+}
+
+function C(props){
+	return <div>{props.num}</div>
 }
