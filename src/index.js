@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Fun from './fun.js'
-import ClassFun from './classFun.js'
-const h1 = <h1>函数组件</h1>
-const div = (<div><Fun html = {h1} num = {2}/><ClassFun nameDong="董秋龙"/></div>)
+import StudentList from './studentList.js'
 
-ReactDOM.render(div,
-  document.getElementById('root')
-);
+var appkey = "demo13_1545210570249";
+
+async function fetchAllStudents(){
+  var stus = await fetch("http://api.duyiedu.com/api/student/findAll?appkey="+appkey)
+  .then(data => data.json()).then(resp => resp.data);
+  return stus
+}
+async function render(){
+  const list = await fetchAllStudents()
+  ReactDOM.render(<div><StudentList list={list} /></div>,
+    document.getElementById('root')
+  )
+};
+render()
 
