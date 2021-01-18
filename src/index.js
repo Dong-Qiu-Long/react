@@ -10,6 +10,9 @@ async function fetchAllStudents(){
   return stus
 }
 async function render(){
+  ReactDOM.render(<h1>正在加载中....</h1>,
+    document.getElementById('root')
+  )
   const list = await fetchAllStudents()
   ReactDOM.render(<div><StudentList list={list} /></div>,
     document.getElementById('root')
