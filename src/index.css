@@ -11,3 +11,7 @@
 	color: #ccc;
 	cursor: not-allowed;
 }
+.active{
+	background-color: #a45;
+	color: aliceblue;
+}
