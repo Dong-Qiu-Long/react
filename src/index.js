@@ -1,46 +1,59 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-import withLog from './Hoc';
+import Context from './context';
+import PropTypes from 'prop-types'
 
-function A(props,ref){
-  return <div>
-    <h1 ref={props.refa} >我是h1</h1>
-    {/* <span ref={ref}>我是span</span> */}
-  </div>
-}
+//创建上下文
+//1.给类组件书写静态属性 childContextTypes 使用该属性对上下文中的数据类型进行约束
+//2.添加实例方法 getChildContext 该方法返回的对象，即为上下文中的数据， 该数据必须满足类型约束
 
-function B(props,ref){
-  console.log(ref)
-  return <div>
-    <h1 ref={ref}>我是b</h1>
-  </div>
-}
-// class B extends React.Component {
-//   render(){
-//     return <div></div>
-//   }
-// }
-const Bhoc = withLog(B);
+class App  extends Component {
 
-const NewA = React.forwardRef(A);
+  /**
+   * 约束上下文中的数据类型
+   */
+  static childContextTypes  = {
+    a:PropTypes.number,
+    b:PropTypes.string.isRequired,
+    fun:PropTypes.func
+  }
 
-class App extends React.Component{
-  ARef = React.createRef();
-  Span = React.createRef();
-  Isb = React.createRef();
-  render(){
-    return <div>
-      {/* <NewA ref={this.ARef} /> */}
-      <A refa = {this.Span} />
-      <button onClick={()=>{
-        console.log(this.ARef);
-        console.log(this.Span);
-        console.log(this.Isb)
-      }}> 获取ref</button>
-      <Bhoc ref={this.Isb} />
+  constructor(props){
+    super(props);
+    this.state = {
+      a:1,
+      b:'123',
+      fun:this.onClickFun
+    }
+  }
+  
+  onClickFun = ()=>{
+    this.setState({
+      a:this.state.a + 1
+    })
+  }
+
+  /**
+   * 发布上下文中的数据
+   */
+  getChildContext(){
+    console.log('发布上下文中的数据')
+    return this.state
+  }
+
+  render() {
+    return (
+      <div>
+        <Context/>
+        {this.state.a}
+        <button onClick = {this.state.fun}>
+            加
+        </button>
       </div>
+    )
   }
 }
+
 
 ReactDOM.render(<div><App/></div>,
   document.getElementById('root')
