@@ -1,55 +1,47 @@
-import React, { Component } from 'react'
+import React, { Component,PureComponent } from 'react'
 import ReactDOM from 'react-dom';
-import Input from './Context'
-//创建上下文
-import ctx from './createContext'
-import Button from './button'
 
-class Form extends Component {
-  state = {
-    fromDate:{}, //表单数据对象
-    submit:()=>{
-      console.log(this.state.fromDate)
-    },
-    changeFormData:(name,val) =>{
-      this.setState({
-        fromDate:{
-          ...this.state.fromDate,
-          [name]:val
-        }
-      })
-    }
+class A extends Component{
+  componentDidUpdate(){
+    console.log('我是A我渲染了')
   }
   render(){
-    const Provider = ctx.Provider;
-    return <Provider value={this.state}>
-        {this.props.children}
-    </Provider>
+    return <div>我是A</div>
+  }
+}
+
+class B extends PureComponent{
+  componentDidUpdate(){
+    console.log('我是B 我渲染了')
+  }
+  render(){
+    return <div>我是B</div>
   }
 }
 
 class App extends Component {
-  render(){
-   
-    return (
-      <Form>
-        <>
-        <div>
-          账号: <Input name="loginId" />
-        </div>
-        <div>
-          密码: <Input name="loginPwd" type="password" />
-        </div>
-        <div>
-          <Button/>
-        </div>
-        </>
-      </Form>
-    )
+  constructor(props){
+    super(props)
+    this.state = {
+      a: 0
+    }
   }
+  render(){
+    return <div>
+      <A/>
+      <B/>
+      <h1>{this.state.a}</h1>
+      <button onClick={()=>{
+        this.setState({
+          a:this.state.a + 1
+        })
+      }}>加</button>
+    </div>
+  }
+
 }
 
-ReactDOM.render(<div><App/></div>,
+ReactDOM.render(<App/>,
   document.getElementById('root')
 );
 
