@@ -10,6 +10,7 @@ function A(props,ref){
 }
 
 function B(props,ref){
+  console.log(ref)
   return <div>
     <h1 ref={ref}>我是b</h1>
   </div>
@@ -19,8 +20,7 @@ function B(props,ref){
 //     return <div></div>
 //   }
 // }
-console.log( withLog(B))
-const IsB = withLog(B);
+const Bhoc = withLog(B);
 
 const NewA = React.forwardRef(A);
 
@@ -35,8 +35,9 @@ class App extends React.Component{
       <button onClick={()=>{
         console.log(this.ARef);
         console.log(this.Span);
-        console.log(this.IS)
+        console.log(this.Isb)
       }}> 获取ref</button>
+      <Bhoc ref={this.Isb} />
       </div>
   }
 }

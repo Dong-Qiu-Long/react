@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
 
-export default function withLog(Comp){
-	return class extends React.Component{
+export default function withTest(Comp){
+	const Comps = React.forwardRef(Comp)
+	class B extends Component{
 		componentDidMount(){
-			console.log('我来了')
+			console.log(`日志${Comp.name}被创建了`)
 		}
 		render(){
-			return <Comp {...this.props}></Comp>
+			const {abc,...refc} = this.props;
+			console.log(abc)
+				return <><Comps ref = {abc} {...refc}/></>
+
 		}
 	}
+	return React.forwardRef((props,ref)=>{
+			console.log(ref)
+		return <B abc = {ref} {...props}/>
+	})
 }
