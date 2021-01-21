@@ -1,59 +1,53 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-import Context from './context';
-import PropTypes from 'prop-types'
-
+import Input from './Context'
 //创建上下文
-//1.给类组件书写静态属性 childContextTypes 使用该属性对上下文中的数据类型进行约束
-//2.添加实例方法 getChildContext 该方法返回的对象，即为上下文中的数据， 该数据必须满足类型约束
+import ctx from './createContext'
+import Button from './button'
 
-class App  extends Component {
-
-  /**
-   * 约束上下文中的数据类型
-   */
-  static childContextTypes  = {
-    a:PropTypes.number,
-    b:PropTypes.string.isRequired,
-    fun:PropTypes.func
-  }
-
-  constructor(props){
-    super(props);
-    this.state = {
-      a:1,
-      b:'123',
-      fun:this.onClickFun
+class Form extends Component {
+  state = {
+    fromDate:{}, //表单数据对象
+    submit:()=>{
+      console.log(this.state.fromDate)
+    },
+    changeFormData:(name,val) =>{
+      this.setState({
+        fromDate:{
+          ...this.state.fromDate,
+          [name]:val
+        }
+      })
     }
   }
-  
-  onClickFun = ()=>{
-    this.setState({
-      a:this.state.a + 1
-    })
-  }
-
-  /**
-   * 发布上下文中的数据
-   */
-  getChildContext(){
-    console.log('发布上下文中的数据')
-    return this.state
-  }
-
-  render() {
-    return (
-      <div>
-        <Context/>
-        {this.state.a}
-        <button onClick = {this.state.fun}>
-            加
-        </button>
-      </div>
-    )
+  render(){
+    const Provider = ctx.Provider;
+    return <Provider value={this.state}>
+        {this.props.children}
+    </Provider>
   }
 }
 
+class App extends Component {
+  render(){
+   
+    return (
+      <Form>
+        <>
+        <div>
+          账号: <Input name="loginId" />
+        </div>
+        <div>
+          密码: <Input name="loginPwd" type="password" />
+        </div>
+        <div>
+          <Button/>
+        </div>
+        </>
+      </Form>
+    )
+  }
+}
 
 ReactDOM.render(<div><App/></div>,
   document.getElementById('root')

@@ -1,39 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ctx from './createContext'
 
-function A(props,context){
-	console.log(context)
-	return <div>
-		我是A
-		{context.a}
-		<button onClick={context.fun}>来吧</button>
-		</div>
-}
-A.contextTypes = {
-	a:PropTypes.number,
-	b:PropTypes.string,
-	fun:PropTypes.func
-}
+export default class context extends Component {
 
-export default class Context extends Component {
-/**
- * 必须声明上下文中的数据
- */
-	static contextTypes  = {
-		a:PropTypes.number,
-		b:PropTypes.string
+	static defaultProps = {
+		type:"text"
 	}
 
-	constructor(props,context){
-		super(props);
-		// console.log(context)
+	static propTypes = {
+		name:PropTypes.string.isRequired,
+		type:PropTypes.string.isRequired
 	}
+	static contextType = ctx;
 
 	render() {
 		return (
-			<div>
-				<A/>
-			</div>
+			<>
+				<input type={this.props.type}  value={this.context.fromDate[this.props.name] || ""} onChange={(e)=>{
+					this.context.changeFormData(this.props.name,e.target.value)
+				}}  />
+			</>
 		)
 	}
 }
