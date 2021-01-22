@@ -1,0 +1,14 @@
+.box{
+	position: relative;
+	width: 600px;
+	height: 600px;
+	border:1px solid #000;
+	background-color: rgb(185, 125, 113);
+	margin: 50px auto;
+}
+.diamond{
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	background-color: #a45;
+}
