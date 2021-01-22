@@ -1,17 +1,18 @@
 import React, { Component,PureComponent } from 'react'
 import ReactDOM from 'react-dom';
+import Err from './Err '
 
 function ChildA(){
-  return <div className="child-a">
-    我是A
-    <ChildB/>
+  return <div>
+    我是childA
   </div>
 }
+
 function ChildB(){
-  const div =  <div className="child-b">
-    我是B
+  return <div>
+    {this.a}
+    我是ChildB
   </div>
-  return ReactDOM.createPortal(div,document.querySelector('#main'))
 }
 
 function App(){
@@ -19,6 +20,9 @@ function App(){
     <div className="app">
       我是App
       <ChildA/>
+      <Err>
+        <ChildB/>
+      </Err>
     </div>
   )
 }
@@ -27,4 +31,7 @@ ReactDOM.render(<div><App/></div>,
   document.getElementById('root')
 );
 
-
+/**
+ * 错误边界
+ * 默认情况下，若一个组件在渲染期间render 发生错误，会导致整个组件树全部卸载
+ */
