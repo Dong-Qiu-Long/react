@@ -1,16 +1,36 @@
 import React, {useState,useEffect } from 'react'
 import ReactDOM from 'react-dom';
-import GetStudent from './hook';
+
+function reducer(state,action){
+  switch(action.type){
+    case "add":
+      console.log('加')
+      return state +1;
+    case 'subtract':
+      console.log('减')
+      return state - 1;
+    default:
+      return state
+  }
+}
 
 function App(){
-  const data = GetStudent();
-  const list = data.map((it,i) => {
-    return <li key={i}>姓名: {it.name} 年龄: {it.age}</li>
-  })
+  const [n, setN] = useState(0);
+
+  //分发器
+  function dispatch(action){
+    const newN = reducer(n,action);
+    setN(newN)
+  }
+  
   return <div>
-    <ul>
-      {list}
-    </ul>
+    <button onClick={()=>{
+      dispatch({type:'add'})
+    }}>加</button>
+    <h1>{n}</h1>
+    <button onClick={()=>{
+      dispatch({type:'subtract'})
+    }}>减</button>
   </div>
 }
 
