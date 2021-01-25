@@ -1,54 +1,36 @@
-.box{
-	div{
-		width:200px ;
-		height: 200px;
-		background-color: #a45;
-	}
-	width:200px ;
-	height: 200px;
-	background-color: rgb(158, 34, 189);
-	border:1px solid red;
-}
-.exited{
-	color: #a1a;
-	transition: 2s;
-	margin-left: 50px;
-}
-.entering{
-	color: #54a;
-	margin-left: 200px;
-	transition: 2s;
-}
-.entered{
-	color: #98a;
-	margin-left: 0px;
-	transition: 2s;
-}
-.exiting{
-	margin-left: 500px;
-	transform: 2s;
-}
-.enter{
-	// opacity: 0;
-	margin-left: 50px;
-	color: #54a;
-}
-.enter-active{
-	// opacity: 1;
-	margin-left: 500px;
-	color: #a1a;
-	transition: 2s;
+.box {
+	width: 800px;
+	height: 500px;
+	border:2px solid #666;
+	margin: 50px auto;
 }
 
-.exit{
-	margin-left: 500px;
-	color: #98a;
+.nav{
+	height: 30px;
+	line-height: 30px;
+	background: #ccc;
+	text-align: center;
+	a{
+		margin:  0px 10px;
+		text-decoration: none;
+	}
 }
-.exit-active{
-	margin-left: 0px;
-	color: aqua;
-	transition: 2s;
+.personage{
+	background-color: antiquewhite;
+	height: calc(500px - 30px);
 }
-.enter-done{
-	opacity: 0;
+
+.login{
+	background-color: aqua;
+	height: calc(500px - 30px);
+}
+
+.home{
+	background-color: aquamarine;
+	height: calc(500px - 30px);
+}
+
+.active{
+	color: #fa4;
+	font-weight: 700;
 }

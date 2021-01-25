@@ -1,51 +1,32 @@
 .box {
-  width: 200px ;
-  height: 200px;
-  background-color: #9e22bd;
-  border: 1px solid red;
+  width: 800px;
+  height: 500px;
+  border: 2px solid #666;
+  margin: 50px auto;
 }
-.box div {
-  width: 200px ;
-  height: 200px;
-  background-color: #a45;
+.nav {
+  height: 30px;
+  line-height: 30px;
+  background: #ccc;
+  text-align: center;
 }
-.exited {
-  color: #a1a;
-  transition: 2s;
-  margin-left: 50px;
+.nav a {
+  margin: 0px 10px;
+  text-decoration: none;
 }
-.entering {
-  color: #54a;
-  margin-left: 200px;
-  transition: 2s;
+.personage {
+  background-color: antiquewhite;
+  height: calc(500px - 30px);
 }
-.entered {
-  color: #98a;
-  margin-left: 0px;
-  transition: 2s;
+.login {
+  background-color: aqua;
+  height: calc(500px - 30px);
 }
-.exiting {
-  margin-left: 500px;
-  transform: 2s;
+.home {
+  background-color: aquamarine;
+  height: calc(500px - 30px);
 }
-.enter {
-  margin-left: 50px;
-  color: #54a;
-}
-.enter-active {
-  margin-left: 500px;
-  color: #a1a;
-  transition: 2s;
-}
-.exit {
-  margin-left: 500px;
-  color: #98a;
-}
-.exit-active {
-  margin-left: 0px;
-  color: aqua;
-  transition: 2s;
-}
-.enter-done {
-  opacity: 0;
+.active {
+  color: #fa4;
+  font-weight: 700;
 }
