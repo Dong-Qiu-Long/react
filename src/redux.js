@@ -1,17 +1,23 @@
 import {createStore,applyMiddleware , bindActionCreators} from 'redux';
-import * as actionTypes from './action/numAction';
 import numReducer from './reducer/numReducer';
+import  {actionTypes,sub} from './action/numAction';
 import logger from 'redux-logger';
-import thunk from 'redux-thunk'
+// import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+// //导入指令
+import {take,all,takeEvery,delay, put} from 'redux-saga/effects';
+const sagaMid = createSagaMiddleware() //创建一个saga中间件
 
-const state = createStore(numReducer,applyMiddleware(thunk,logger))
+export default  createStore(numReducer,applyMiddleware(sagaMid,logger))
+// console.log(actionTypes)
+function* add(){
+	yield delay(2000);
+	console.log('我来啦')
+	yield put(sub())
+}
+function* sagatask(){
+	yield takeEvery(actionTypes.NUMAJAX,add)
+}
 
-const boundActions = bindActionCreators(actionTypes,state.dispatch);
+sagaMid.run(sagatask) //启动saga任务
 
-boundActions.ADD();
-console.log(state.getState());
-boundActions.SUB();
-console.log(state.getState());
-boundActions.fetchUsers();
-console.log(state.getState());
-console.log(boundActions); 
