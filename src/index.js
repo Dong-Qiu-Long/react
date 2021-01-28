@@ -1,75 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider,connect} from 'react-redux'
-import  {add,sub,adds,fetch} from './action/numAction';
-import store from "./redux"
-
-window.add = function(){
-	console.log(add);
-	store.dispatch(add(10))
-}
-
-class App extends React.Component{
-	render(){
-		return <div>
-			<button onClick={this.props.onAdd}>加</button>
-			<h1>{this.props.num}</h1>
-			<button onClick={this.props.onSub}>减</button>
-			<button onClick={()=>{
-				this.props.onAdds(5)
-			}}>多加点</button>
-			<button onClick={()=>{
-				this.props.onFetch(10)
-			}}>来个异步</button>
-		</div>
-	}
-}
+import App from './App';
+import dva from 'dva';
+import counterModel from './counter'
+const app = dva();
 /**
- * 
- * @param {*} state 
+ * 设置跟路由，启动后要运行的函数，自动渲染节点
  */
-function mapStateToProps(state){
-	console.log(state)
-	return{
-		num:state
-	}
-}
-/**
- * 
- * @param {*} dispatch 
- */
-function mapDispathToProps(dispatch){
-	// console.log(dispatch);
-	return{
-		onAdd(){
-			dispatch(add())
-		},
-		onSub(){
-			dispatch(sub())
-		},
-		onAdds(val){
-			console.log(val)
-			dispatch(adds(val))
-		},
-		onFetch(val){
-			console.log(val)
-			dispatch(fetch(val))
-		}
-	}
-}
-const Connect = connect(mapStateToProps,mapDispathToProps)(App)
-// class Connect extends React.Component {
-// 	constructor(props){
-// 		super(props);
-// 		this.state = mapStateToProps(store.getState());
-// 		store.subscribe(()=>{
-// 			this.setState(mapStateToProps(store.getState()))
-// 		})
-// 	}
-// 	render(){
-// 		const eventHandlers = mapDispathToProps(store.dispatch);
-// 		return <App {...this.state} {...eventHandlers} />
-// 	}
-// }
+console.log(App)
+app.router(()=><App/>);
 
-ReactDOM.render(<Provider store={store}><Connect/></Provider>, document.getElementById('root'));
+/**
+ * 在启动之前定义模型
+ * 传入一个模型
+ * 模型可以抽离
+ * 模型中可以写
+ * namespace:命名空间，是字符串，字符串会被作为属性保存
+ * state:该模型的默认值
+ */
+app.model(counterModel)
+
+/**
+ * 该方法用于启动程序，可以认为启动的就是react程序，该函传入一个选择器，用于选中页面中的
+ * 某个dom元素，react会将内容渲染到该元素内部
+ */
+app.start(document.getElementById('root'))
+
